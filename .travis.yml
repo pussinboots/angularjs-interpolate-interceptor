@@ -17,6 +17,6 @@ deploy:
   app: angularjs-interpolate-interceptor
   strategy: git
   api_key:
-    secure: nQ9G863kXSWi+AC/Xreiz1/bGTikFfU+0MNQY6NkvMh3A7vJjQP52cpOcVsSnJi8oekTYrbJDj/aswSSXSoJI5ftvxjBU5GwGyB6gjJQRtMGMn3IBgc9X19vW4NGqX5Y2aQRoJOfHy2A1sKrkycfEdy/x8Z3jhoPHG1+Pi0lLNQ=
+    secure: ysEe080RjESX3rA+vFlbxBkw1nWmEDRygbesHXEWP5ccQvMMrpfcKYbD1VBc6aUWiheuChLkR4o8Vpt+EmU2zP+P1jyT+lhF4UsHQjGNwG+NtfgneiHeQs8bJNSDty7W9hwXrzZu+oS88ggMq7IL4ySinNCvsupVJxN+AfyZkWU=
 before_deploy:
 - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
