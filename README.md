@@ -1,6 +1,8 @@
 angularjs-interpolate-interceptor
 ==================
 
+AngularJS Module to define dynamic variables in ngResource defintion like familiar with in templates. Its has the same bracket syntax for exampel {{config.value}} could also be used in the ngResource url definition and will be replaced with the correspondant value when the request is performed.
+
 Continous Integration
 ------------
 * [travis](https://travis-ci.org/pussinboots/angularjs-interpolate-interceptor)
