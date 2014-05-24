@@ -1,4 +1,4 @@
-var myAppDev = angular.module('epostTest', ['epost', 'ngMockE2E']);
+var myAppDev = angular.module('demoApp-Mock', ['demoApp', 'ngMockE2E']);
 
 myAppDev.run(["$httpBackend", function ($httpBackend) {
     var user = {name: 'Sandra'};

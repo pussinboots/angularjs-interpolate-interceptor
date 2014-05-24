@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-var myModule = angular.module('epost', ['Services'])
+var myModule = angular.module('demoApp', ['Services'])
 
 myModule.config(function ($routeProvider) {
     $routeProvider

@@ -11,7 +11,7 @@ describe('Controllers tests', function () {
         });
     });
 
-    beforeEach(module('epost'));
+    beforeEach(module('demoApp'));
 
     describe('ConnectCtrl', function () {
         var scope, $httpBackend, rootScope;
