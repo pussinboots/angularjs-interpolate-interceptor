@@ -1,11 +1,30 @@
-<label>valuea</label>
+<h1>Simple variable example</h1>
+
+Two services are defined.
+
+<ul>
+<li>ServiceA defined with url /{{config.valuea}}/</li>
+<li>ServiceB defined with url /{{config.valueb}}/</li>
+</ul>
+
+<label>url of ServiceA</label>
 <input type="text" ng-model="$root.config.valuea" />
-
-<label>valueb</label>
+<br />
+<label>url of ServiceB</label>
 <input type="text" ng-model="$root.config.valueb" />
-
+<br />
 <button ng-click="reload()">Reload</button>
 
-{{resultA}}
+<br />
 
+<h2>Mocked result from the defined services</h2>
+
+The mocked result contains a json object {system:'[url of the requested server]'}
+
+<div>
+{{resultA}}
+</div>
+
+<div>
 {{resultB}}
+</div>
