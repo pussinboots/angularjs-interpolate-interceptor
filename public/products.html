@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de" ng-app="epost">
+<head>
+<meta charset="utf-8">
+<meta name="fragment" content="#" />
+<title>Mini EPost Brief</title>
+
+<!-- design template -->
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="css/ng-grid.css" rel="stylesheet" type="text/css">
+<link href="css/tabs.css" rel="stylesheet" type="text/css">
+<link href="css/jsontree.css" rel="stylesheet" type="text/css">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="grey">
+
+<!-- fileupload -->
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
+<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css">
+<!-- Bootstrap CSS fixes for IE6 -->
+<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+<!-- Bootstrap Image Gallery styles -->
+<link rel="stylesheet" href="http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="css/fileupload/jquery.fileupload-ui.css">
+<!-- use local patched version to support blobl ajax handling pull request is open-->
+<script src="js/offline/jquery-1.10.2.js" type='text/javascript'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type='text/javascript'></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.js" type='text/javascript'></script>
+<!-- use local patched version to support configurable uri encoding pull request is obmitted
+<script src="http://code.angularjs.org/1.1.4/angular-resource.js" type='text/javascript'></script>
+ -->
+<script src="lib/angular-resource.js" type='text/javascript'></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.js" type='text/javascript'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-sanitize.js"></script>
+<script src="js/offline/localStorage.js" type='text/javascript'></script>
+
+<script src="js/epost/app.js" type='text/javascript'></script>
+<script src="js/epost/directives/datepicker.js" type='text/javascript'></script>
+<script src="js/epost/directives/ahighchart.js" type='text/javascript'></script>
+<script src="js/epost/directives/nullifempty.js" type='text/javascript'></script>
+<script src="js/epost/directives/loadingscreen.js" type='text/javascript'></script>
+<script src="js/epost/directives/upload.js" type='text/javascript'></script>
+<script src="js/epost/directives/jsontree.js" type='text/javascript'></script>
+<script src="js/epost/controllers.js" type='text/javascript'></script>
+<script src="js/epost/filters.js" type='text/javascript'></script>
+<script src="js/epost/services.js" type='text/javascript'></script>
+<script src="js/offline/hmac-sha1.js" type='text/javascript'></script>
+<script src="js/offline/enc-base64-min.js" type='text/javascript'></script>
+<script src="js/offline/charts.js" type='text/javascript'></script>
+<script src="js/offline/awesomechart.js" type='text/javascript'></script>
+<script type="text/javascript" src="js/offline/highcharts.js"></script>
+<script type="text/javascript" src="js/offline/highcharts.js"></script>
+
+<!-- grid -->
+<script type="text/javascript" src="js/offline/ng-grid-2.0.7.debug.js"></script>
+</head>
+<body>
+	<div id="header">
+    	<!-- Start navigation area -->
+        <div id="navigation">
+        	<div id="navigation_wrap">
+                <!-- Start contact info area -->
+                
+                <div id="conteactinfo">
+                	<a href="#" ng-model="collapseconfig" ng-click="collapseconfig=!collapseconfig">+</a>
+                	<div ng-show="collapseconfig">
+	                    umgebung: <strong>{{plattform}}</strong></br>
+	                	clientid: <strong>{{config.clientid}}</strong></br>
+	                	redirectUri: <strong>{{getPlattFormConfig().redirecturl}}</strong></br>
+	                	scopes: <strong>{{(scopes | filter:{checked:true} | joinByName:'')}}</strong></br>
+	                	</br>
+	                	loginurl: <strong>{{getPlattFormConfig().loginurl}}</strong></br>
+	                	sendurl: <strong>{{getPlattFormConfig().sendurl}}</strong></br>
+	                	readurl: <strong>{{getPlattFormConfig().readurl}}</strong></br>
+	                	payurl: <strong>{{getPlattFormConfig().payurl}}</strong></br>
+	                	safeurl: <strong>{{getPlattFormConfig().safeurl}}</strong></br>
+                	</div>
+                </div>
+                <!-- End contact info area -->
+                <!-- Start navigation -->
+                <div id="navi" class="">
+                    <a href="#" ng-model="collapse" ng-click="collapsed=!collapsed">+</a>
+                    <div ng-show="collapsed">
+						<div>
+		                    <ul>
+		                        <li ng-repeat="plattform in plattforms">
+		                            <input
+		                                    type="radio"
+		                                    name="sasa"
+		                                    value="{{plattform.name}}"
+		                                    ng-checked="plattform.checked"
+		                                    ng-model="asdad"
+		                                    ng-click="setPlattForm(plattform)"
+		                                    />
+		                            <span>{{plattform.name}}</span>
+		                        </li>
+		                    </ul>
+	                    </div>
+	                    <div>
+	                    <ul>
+	                        <li ng-repeat="scope in scopes">
+	                            <input
+	                                    type="checkbox"
+	                                    value="{{scope.name}}"
+	                                    ng-checked="scope.checked"
+	                                    ng-model="scope.checked"
+	                                    />
+	                            <span>{{scope.name}}</span>
+	                        </li>
+	                    </ul>
+	                    </div>
+                    </div>
+                    <ul>
+                        <li ng-repeat="menu in global.oauth2">
+                            <a id="{{menu.name}}" ng-href="{{menu.link + (scopes | filter:{checked:true} | joinByName:'&scope=') + (scopes | filter:{checked:true} | joinByName:'&state=') }}" title="{{menu.name}}">{{menu.name}}</a>
+                        </li>
+                        <li ng-repeat="menu in global.menues">
+                            <a ng-href="{{menu.link}}" title="{{menu.name}}">{{menu.name}}</a>
+                        </li>
+                    </ul>
+                <!-- End navigation -->
+			</div>
+        
+        </div>
+	</div>
+	<!-- dynamic rendering of the menu based on the menues.json file see public/global/menues.json and the Menue service see services.js -->
+
+	<div id="main"></div>
+	<div id="main-wrap">
+        
+        <!-- Start -->
+        <div class="boxes-full">
+        
+        	<div class="boxes-padding fullpadding" ng-view ng-controller="ConnectCtrl">
+            </div>
+            <span class="box-arrow"> </span>
+        </div>
+        <!-- End Latest Project titles -->
+    </div>
+	
+	<div id="scrolltab" style="display: block;"></div>
+    <script src="js/offline/jquery.ui.widget.js" type='text/javascript'></script>
+    
+	<script src="js/offline/jquery.fileupload.js" type='text/javascript'></script>
+</body>
+</html>
