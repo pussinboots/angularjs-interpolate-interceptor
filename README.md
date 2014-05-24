@@ -11,7 +11,38 @@ Dependencies
 
 ##Usage
 
-missing
+* download [js file](https://github.com/pussinboots/angularjs-interpolate-interceptor/blob/master/public/js/lib/angularjs-interpolate-interceptor.js)
+* added javascript file to your app html file
+```html
+<script type='text/javascript' src="angularjs-interpolate-interceptor.js"></script>
+```
+* add module to the app.js and register interpolateInterceptor as http interceptor
+
+```js
+var appModule = angular.module('app', ['angularjs-interpolate-interceptor'])
+appModule.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('interpolateInterceptor');
+}])
+```
+
+That done. Now you can use the angularjs bracket syntax to define variables in the nrResource service url definition. For example
+
+```js
+angular.module('Services', ['ngResource'], function ($provide) {
+    $provide.factory('ServiceA', function ($resource, $rootScope) {
+        var resource = $resource('/{{config.valuea}}/', {}, {
+            get: {method: 'GET', params: {}},
+        });
+        return resource;
+    });
+});
+```
+
+The variable {{config.valuea}}
+
+```js
+var resource = $resource('/{{config.valuea}}/', {}, {
+```
 
 Issues
 -------------
@@ -19,6 +50,14 @@ Issues
 
 Todos
 -------------
+* at the moment the variable is hardcoded with name config and has to be registered on the $rootScope make it configurable 
+```js
+request: function (config) {
+    var exp = $interpolate(config.url);
+    config.url  = exp({config: $rootScope.config})
+    return config;
+}
+```
 
 Features
 -------------
@@ -31,7 +70,24 @@ missing
 
 ##Example
 
-#### Key Example
+#### Simple Variable Example
+
+Define on the $rootScope the config object amd use it on the service defintion like
+
+```js
+appModule.run(function ($rootScope) {
+	$rootScope.config = {valuea:'test', valueb:'prod'}
+});
+
+angular.module('Services', ['ngResource'], function ($provide) {
+    $provide.factory('ServiceA', function ($resource, $rootScope) {
+        var resource = $resource('/{{config.valuea}}/', {}, {
+            get: {method: 'GET', params: {}},
+        });
+        return resource;
+    });
+});
+```
 
 Demo
 -------------
@@ -73,7 +129,7 @@ Or run the karma test local with
 Description
 -------------
 
-missing
+The motivation is to support dynamic variables for ngResource service defintion to change urls at runtime for example or to inject global variables. Maybe it could also be used to minimize the controller logic to only bind data for the view and the service defined which variable he need for his request. It is a young project and started as proof of concept maybe they can support other uise case. Feel free to try and develop it to support your needs. Questions, thanks, ideas contact me.
 
 License
 --------------
