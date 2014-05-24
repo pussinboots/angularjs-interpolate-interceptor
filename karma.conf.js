@@ -19,6 +19,7 @@ module.exports = function (config) {
             'https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.js',
             'https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-sanitize.js',
             'public/js/*.js',
+            'public/js/lib/*.js',
             'public/test/**/*.js'
         ],
 

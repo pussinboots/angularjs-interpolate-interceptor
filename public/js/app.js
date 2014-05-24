@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-var myModule = angular.module('demoApp', ['Services'])
+var myModule = angular.module('demoApp', ['Services', 'angularjs-interpolate-interceptor'])
 
 myModule.config(function ($routeProvider) {
     $routeProvider
@@ -9,18 +9,8 @@ myModule.config(function ($routeProvider) {
         .otherwise({ redirectTo: '/connect' });
 })
 myModule.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push('httpInterpolarteInterceptor');
+    $httpProvider.interceptors.push('interpolateInterceptor');
 }])
-
-myModule.factory('httpInterpolarteInterceptor', function ($rootScope, $interpolate) {
-    return {
-        request: function (config) {
-            var exp = $interpolate(config.url);
-            config.url  = exp({config: $rootScope.config})
-            return config;
-        }
-    };
-});
 
 myModule.run(function ($rootScope) {
 	$rootScope.config = {valuea:'test', valueb:'prod'}
