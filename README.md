@@ -1,4 +1,4 @@
-angularjs-interpolate-interceptor
+[angularjs-interpolate-interceptor](http://ngmodules.org/modules/angularjs-interpolate-interceptor)
 ==================
 [![Build Status](https://travis-ci.org/pussinboots/angularjs-interpolate-interceptor.svg?branch=master)](https://travis-ci.org/pussinboots/angularjs-interpolate-interceptor)
 [![Coverage Status](https://img.shields.io/coveralls/pussinboots/angularjs-interpolate-interceptor.svg)](https://coveralls.io/r/pussinboots/angularjs-interpolate-interceptor?branch=master)
