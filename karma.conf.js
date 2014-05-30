@@ -38,7 +38,12 @@ module.exports = function (config) {
 
         // test results reporter to use
         // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        reporters: ['progress', 'coverage', 'dots', 'junit', 'threshold'],
+        reporters: ['progress', 'coverage', 'coveralls', 'dots', 'junit', 'threshold'],
+
+	coverageReporter: {
+	    type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
+	    dir: 'coverage/'
+	},
 
 	thresholdReporter: {
 	      statements: 100,
