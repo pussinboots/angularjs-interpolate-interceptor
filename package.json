@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-crypto",
+  "name": "angularjs-interpolate-interceptor",
   "version": "0.0.1",
   "dependencies": {
     "connect": "^3.0.0",

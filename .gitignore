@@ -1,0 +1,5 @@
+.idea
+.idea_modules
+coverage
+node_modules
+test-results.xml
